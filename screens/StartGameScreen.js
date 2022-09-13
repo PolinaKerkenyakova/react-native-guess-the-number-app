@@ -1,18 +1,19 @@
 import {
   StyleSheet,
   View,
-  Text,
   Button,
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
 } from "react-native";
-
 import { useState } from "react";
 
 import Card from "../components/Card";
 import Input from "../components/Input";
 import NumberContainer from "../components/NumberContainer";
+import BodyText from "../components/BodyText";
+import TitleText from "../components/TitleText";
+
 import colors from "../constants/colors";
 
 const StartGameScreen = (props) => {
@@ -44,6 +45,7 @@ const StartGameScreen = (props) => {
     setConfirmed(true);
     setEnteredValue("");
     setSelectedNumber(chosenNumber);
+    Keyboard.dismiss();
   };
 
   let confirmedOutput;
@@ -51,7 +53,7 @@ const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <Card>
-        <Text>Chosen number:</Text>
+        <BodyText>Chosen number:</BodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
         <Button
           title="START GAME"
@@ -65,9 +67,9 @@ const StartGameScreen = (props) => {
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.screen}>
-        <Text style={styles.title}>Start a Game</Text>
+        <TitleText style={styles.title}>Start a Game</TitleText>
         <Card style={styles.inputContainer}>
-          <Text>Enter a number</Text>
+          <BodyText>Enter a number</BodyText>
           <Input
             style={styles.input}
             blurOnSubmit
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
+    fontFamily: "open-sans-bold"
   },
   inputContainer: {
     width: 300,
